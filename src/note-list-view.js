@@ -8,7 +8,7 @@
     var htmlString = "<ul>"
     var length = this.noteList._list.length;
     for (var index = 0; index < length; index++) {
-    htmlString += "<li><div>" + this.noteList._list[index]._text + "</div></li>"
+    htmlString += "<li><div>" + this.noteList._list[index]._text.substring(0, 20) + "</div></li>"
     }
     htmlString += "</ul>"
     return htmlString

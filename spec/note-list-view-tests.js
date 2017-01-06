@@ -1,38 +1,39 @@
-function noteListViewExists() {
+(function noteListViewExists() {
   var noteListView = new NoteListView();
   assert.isTrue(noteListView);
-};
+})();
 
-function noteListExistsInView() {
+(function noteListExistsInView() {
   var noteList = new NoteList()
   var noteListView = new NoteListView(noteList);
   assert.isTrue(noteListView.noteList);
-};
+})();
 
-function htmlStringOneNote() {
+(function htmlStringOneNote() {
   var noteList = new NoteList()
   var noteListView = new NoteListView(noteList);
   noteListView.noteList.createNote('Chris is slightly better at Javascript');
-  assert.isTrue(noteListView.htmlString() === "<ul><li><div>Chris is slightly better at Javascript</div></li></ul>");
-};
+  assert.isTrue(noteListView.htmlString() === "<ul><li><div>Chris is slightly be</div></li></ul>");
+})();
 
-function htmlStringMultipleNotes() {
+(function htmlStringMultipleNotes() {
   var noteList = new NoteList()
   var noteListView = new NoteListView(noteList);
   noteListView.noteList.createNote('Chris is slightly better at Javascript');
   noteListView.noteList.createNote('Tom is also slightly better at Javascript');
   noteListView.noteList.createNote('Chris spotted the text');
-  assert.isTrue(noteListView.htmlString() === "<ul><li><div>Chris is slightly better at Javascript</div></li><li><div>Tom is also slightly better at Javascript</div></li><li><div>Chris spotted the text</div></li></ul>");
-};
+  assert.isTrue(noteListView.htmlString() === "<ul><li><div>Chris is slightly be</div></li><li><div>Tom is also slightly</div></li><li><div>Chris spotted the te</div></li></ul>");
+})();
 
-function htmlStringZeroNotes() {
+(function htmlStringZeroNotes() {
   var noteList = new NoteList()
   var noteListView = new NoteListView(noteList);
   assert.isTrue(noteListView.htmlString() === "<ul></ul>");
-};
+})();
 
-noteListViewExists();
-noteListExistsInView();
-htmlStringOneNote();
-htmlStringMultipleNotes();
-htmlStringZeroNotes();
+(function noteListItemsDontExceedTwentyCharacters() {
+  var noteList = new NoteList()
+  var noteListView = new NoteListView(noteList);
+  noteListView.noteList.createNote('This note will be over twenty characters long')
+  assert.isTrue(noteListView.htmlString() === "<ul><li><div>This note will be ov</div></li></ul>")
+})();
